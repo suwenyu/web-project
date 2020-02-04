@@ -27,7 +27,7 @@
 
       <b-form-group id="input-group-3" label="Your First Name:" label-for="input-3">
         <b-form-input
-          id="input-2"
+          id="input-3"
           v-model="form.first_name"
           required
           placeholder="Enter first name"
@@ -36,7 +36,7 @@
 
       <b-form-group id="input-group-4" label="Your Last Name:" label-for="input-4">
         <b-form-input
-          id="input-2"
+          id="input-4"
           v-model="form.last_name"
           required
           placeholder="Enter last name"
@@ -62,6 +62,13 @@
 </template>
 
 <script>
+import axios from 'axios';
+
+const headers = {
+  'Content-Type': 'application/json'
+};
+
+
   export default {
     data() {
       return {
@@ -83,7 +90,22 @@
     methods: {
       onSubmit(evt) {
         evt.preventDefault()
-        alert(JSON.stringify(this.form))
+        let userObj = JSON.stringify(this.form);
+        console.log(userObj);
+
+
+        axios.post("http://localhost:8000/users/", userObj, {
+                headers: headers
+            }
+        )
+        .then(function (res){
+            console.log(res);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+
+        alert(JSON.stringify(this.form));
       }
     }
   }
