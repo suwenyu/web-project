@@ -84,7 +84,7 @@ const headers = {
     },
     computed: {
       validation() {
-        return this.form.password.length > 8 && this.form.password.length < 20
+        return this.form.password.length >= 8 && this.form.password.length <= 20
       }
     },
     methods: {

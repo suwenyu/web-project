@@ -68,6 +68,14 @@ REST_FRAMEWORK = {
     ]
 }
 
+from datetime import timedelta
+
+JWT_AUTH = {
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_EXPIRATION_DELTA': timedelta(hours=1),
+    'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=7),
+}
+
 ROOT_URLCONF = 'backend.urls'
 
 TEMPLATES = [
@@ -88,6 +96,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:8080",
+]
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
