@@ -1,39 +1,48 @@
 @host = http://localhost:8000
-@Cookie = csrftoken=EVmE3KcBCRp6YwkI6d8jb3T2zE2w5g8lmeRazintfLpL08QvNxZVVC9Ys1xBPMwH; expires=Sun, 10 Oct 2021 07:05:15 GMT; Max-Age=31449600; Path=/; SameSite=Lax
-
+@Cookie = io=6582a1173f6a49b4998ec008982377d9; JSESSIONID.ea95131c=node0fakogsy6th0giam0qm5hhqms3.node0; screenResolution=1280x800; JSESSIONID.7aa0f552=node0qtnuk77jtayavs3avvy3ic4e6.node0; jenkins-timestamper-offset=-28800000; session=eyJjc3JmX3Rva2VuIjoiZjg0MzAzMzg1ZWMyZTI3ODcwMGIxNGM2ZGY5OTU1YTNiZDg5ZWM1YSJ9.X1m-xA.9eoltM_4p0iVo_K5eEtvNoYX-zE; tabstyle=html-tab; sessionid=8pze0yft8553ag330zjynzqe2fntgwzx; csrftoken=9oHvbWOe044qcqUZiMDmx4tjZtg0b2PHHE5SXZNjeTVqPBsVs1Ek1XZ1VF2dwoT4
+@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjAyNDMxNTQ1LCJqdGkiOiJkN2NlYTkyMDMzNzE0ZGE2YmFkNDNjOGQ5MjU4ZjQ4YSIsInVzZXJfaWQiOjJ9.lq_alsKnfyQJJyITjykSt9UqbcfduKlziw1pYOAB4yY
+@token_value = test
 ###
 
-POST {{host}}/v1/api/auth/obtain_token/
+POST {{host}}/v1/api/token/
 Content-Type: application/json
 
 {
-    "username": "wenyu",
-    "password": "n69df4h"
-}
-###
-# Not work
-POST {{host}}/api-auth/login/?next=/
-Set-Cookie: {{Cookie}}
-
-{
-    "username": "wenyu",
-    "password": "n69df4h"
+    "username": "ken_su",
+    "password": "test"
 }
 
 ###
 GET {{host}}/v1/api/users
+Authorization: Bearer {{token}}
 
 ###
 GET {{host}}/v1/api/users/1/
+Authorization: Bearer {{token}}
+
 ###
 
-PUT {{host}}/v1/api/users/1/
+PUT {{host}}/v1/api/users/2/
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "username": "wenyu1234",
+    "password": "test",
+    "first_name": "Ken",
+    "last_name": "Su",
+    "email": "wenyu12@gmail.com"
+}
+###
+
+POST {{host}}/v1/api/create_user/
 Content-Type: application/json
 
 {
-    "username": "wenyu",
-    "password": "n69df4h",
-    "first_name": "Ken",
-    "last_name": "Su"
+    "username": "ken_su",
+    "password": "test",
+    "first_name": "test1",
+    "last_name": "test2"
 }
+
 ###
