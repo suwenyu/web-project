@@ -17,17 +17,17 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
 
-from blog import views
+from user import views
 from rest_framework import routers
 
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 
 router = routers.DefaultRouter()
-router.register(r'^api/v1/users', views.UserViewSet)
+router.register(r'^v1/api/users', views.UserViewSet)
 
 urlpatterns = [
-	url(r'^api/v1/auth/obtain_token/', obtain_jwt_token),
-	url(r'^api/v1/auth/refresh_token/', refresh_jwt_token), 
+	url(r'^v1/api/auth/obtain_token/', obtain_jwt_token),
+	url(r'^v1/api/auth/refresh_token/', refresh_jwt_token),
 
 
     path('admin/', admin.site.urls),

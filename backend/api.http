@@ -1,0 +1,39 @@
+@host = http://localhost:8000
+@Cookie = csrftoken=EVmE3KcBCRp6YwkI6d8jb3T2zE2w5g8lmeRazintfLpL08QvNxZVVC9Ys1xBPMwH; expires=Sun, 10 Oct 2021 07:05:15 GMT; Max-Age=31449600; Path=/; SameSite=Lax
+
+###
+
+POST {{host}}/v1/api/auth/obtain_token/
+Content-Type: application/json
+
+{
+    "username": "wenyu",
+    "password": "n69df4h"
+}
+###
+# Not work
+POST {{host}}/api-auth/login/?next=/
+Set-Cookie: {{Cookie}}
+
+{
+    "username": "wenyu",
+    "password": "n69df4h"
+}
+
+###
+GET {{host}}/v1/api/users
+
+###
+GET {{host}}/v1/api/users/1/
+###
+
+PUT {{host}}/v1/api/users/1/
+Content-Type: application/json
+
+{
+    "username": "wenyu",
+    "password": "n69df4h",
+    "first_name": "Ken",
+    "last_name": "Su"
+}
+###
